@@ -80,7 +80,7 @@ export class Chord {
     const intervals = CHORD_INTERVALS[this.quality];
     
     // Apply the inversion to the intervals
-    let invertedIntervals = [...intervals];
+    const invertedIntervals = [...intervals];
     for (let i = 0; i < this.inversion; i++) {
       const first = invertedIntervals.shift() as number;
       invertedIntervals.push(first + 12); // Move to the next octave

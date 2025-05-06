@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Chord, ChordQuality, ChordInversion } from "@/lib/chord";
+import { Chord, createDefaultChord, createRandomChord } from "@/lib/chord";
 import { playChord, stopChord } from "@/lib/sound";
 
 export default function Home() {
   const [showAnswer, setShowAnswer] = useState(false);
-  const [currentChord, setCurrentChord] = useState<Chord>(
-    new Chord("C", "major", 0)
-  );
+  const [currentChord, setCurrentChord] = useState<Chord>(createDefaultChord());
   
   const startSound = () => {
     playChord(currentChord);
@@ -23,16 +21,7 @@ export default function Home() {
   };
 
   const changeChord = () => {
-    // Example: randomly select a root note, quality, and inversion
-    const roots = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-    const qualities: ChordQuality[] = ['major', 'minor'];
-    const inversions: ChordInversion[] = [0, 1, 2];
-    
-    const randomRoot = roots[Math.floor(Math.random() * roots.length)];
-    const randomQuality = qualities[Math.floor(Math.random() * qualities.length)];
-    const randomInversion = inversions[Math.floor(Math.random() * inversions.length)];
-    
-    setCurrentChord(new Chord(randomRoot, randomQuality, randomInversion));
+    setCurrentChord(createRandomChord());
     setShowAnswer(false);
   };
 

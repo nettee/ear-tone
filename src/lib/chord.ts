@@ -152,3 +152,31 @@ export class Chord {
     }
   }
 } 
+
+// Utility functions for creating chords
+
+/**
+ * Creates a default chord (C major in root position)
+ */
+export function createDefaultChord(): Chord {
+  return new Chord("C", "major", 0);
+}
+
+/**
+ * Generates a random chord
+ * @param qualityOptions - Optional array of chord qualities to choose from
+ * @param inversionOptions - Optional array of inversions to choose from
+ * @returns A new random Chord instance
+ */
+export function createRandomChord(
+  qualityOptions: ChordQuality[] = ['major', 'minor'],
+  inversionOptions: ChordInversion[] = [0, 1, 2]
+): Chord {
+  const roots = ROOT_NOTES;
+  
+  const randomRoot = roots[Math.floor(Math.random() * roots.length)];
+  const randomQuality = qualityOptions[Math.floor(Math.random() * qualityOptions.length)];
+  const randomInversion = inversionOptions[Math.floor(Math.random() * inversionOptions.length)];
+  
+  return new Chord(randomRoot, randomQuality, randomInversion);
+} 

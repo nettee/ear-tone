@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+把以上方案写成一份修改代码的 prompt，我要交给 claude 3.7 写代码。要求直接输入 prompt 内容，不包含多余的话，可以直接复制。

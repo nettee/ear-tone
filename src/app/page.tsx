@@ -1,34 +1,21 @@
 "use client";
 
-import * as Tone from "tone";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Chord, ChordQuality, ChordInversion } from "@/lib/chord";
+import { playChord, stopChord } from "@/lib/sound";
 
 export default function Home() {
-  const synthRef = useRef<Tone.PolySynth | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
   const [currentChord, setCurrentChord] = useState<Chord>(
     new Chord("C", "major", 0)
   );
   
   const startSound = () => {
-    // Create synth if it doesn't exist
-    if (!synthRef.current) {
-      synthRef.current = new Tone.PolySynth(Tone.Synth).toDestination();
-    }
-    // Start the audio context (needed for browsers)
-    Tone.start();
-    // Play the chord
-    const notes = currentChord.getNotes();
-    synthRef.current.triggerAttack(notes);
+    playChord(currentChord);
   };
   
   const stopSound = () => {
-    // Release all notes if synth exists
-    if (synthRef.current) {
-      const notes = currentChord.getNotes();
-      synthRef.current.triggerRelease(notes);
-    }
+    stopChord(currentChord);
   };
 
   const toggleAnswer = () => {

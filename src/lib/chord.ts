@@ -110,14 +110,18 @@ export class Chord {
         
         // 调整和弦位置，保证在合理的音域范围内
         // 理想范围：最低音在C3(48)和C4(60)之间
-        const lowestNote = midiNotes[0];
+        let lowestNote = midiNotes[0];
         
-        if (lowestNote > 60) {
-            // 如果最低音高于C4，将所有音符降低一个八度
+        // 如果最低音高于C4，逐渐降低八度，直到最低音处于理想范围内
+        while (lowestNote > 60) {
             midiNotes = midiNotes.map(note => note - 12);
-        } else if (lowestNote < 48) {
-            // 如果最低音低于C3，将所有音符升高一个八度
+            lowestNote = midiNotes[0];
+        }
+        
+        // 如果最低音低于C3，逐渐升高八度，直到最低音处于理想范围内
+        while (lowestNote < 48) {
             midiNotes = midiNotes.map(note => note + 12);
+            lowestNote = midiNotes[0];
         }
         
         // 确定是否使用降号表示

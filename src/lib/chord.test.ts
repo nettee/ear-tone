@@ -50,10 +50,10 @@ describe('Chord.getNotes', () => {
     // 选择一个高音域的和弦，确保它的最低音会高于 C4 如果不进行调整
     // 例如 B 大调第一转位 (D#-F#-B)，D# 可能高于 C4，应向下调整八度
     const bMajorFirstInv = new Chord('B', 'major', 1);
-    expect(bMajorFirstInv.getNotes()[0]).toBe('D#4'); // 应调整为 D#4 而不是 D#5
+    expect(bMajorFirstInv.getNotes()[0]).toBe('D#3'); // 应调整为 D#3 而不是 D#4
     
     // 测试八度调整后，和弦音符仍然保持正确顺序
-    expect(bMajorFirstInv.getNotes()).toEqual(['D#4', 'F#4', 'B4']);
+    expect(bMajorFirstInv.getNotes()).toEqual(['D#3', 'F#3', 'B3']);
   });
 
   test('当最低音可能低于 C3 时调整八度', () => {

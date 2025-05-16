@@ -81,8 +81,8 @@ describe('Chord.getNotes', () => {
   // 测试异常情况
   test('处理无效根音', () => {
     expect(() => {
-      // @ts-ignore - 故意传入无效值进行测试
-      new Chord('Z', 'major', 0);
+      // 故意传入无效值进行测试
+      new Chord('Z' as string, 'major', 0);
     }).toThrow();
   });
 });

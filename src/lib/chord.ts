@@ -25,11 +25,8 @@ const CHORD_INTERVALS = {
 
 // 将音符名称转换为MIDI编号
 function noteToMidi(noteName: string): number {
-    let note: string;
-    let octave: number;
-
-    note = noteName.slice(0, -1); // 获取不带八度的音符
-    octave = parseInt(noteName.slice(-1)); // 获取八度
+    const note: string = noteName.slice(0, -1); // 获取不带八度的音符
+    const octave: number = parseInt(noteName.slice(-1)); // 获取八度
 
     if (!(note in NOTE_TO_MIDI)) {
         throw new Error(`无效的音符名称: ${note}`);

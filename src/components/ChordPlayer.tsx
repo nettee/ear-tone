@@ -51,41 +51,56 @@ export function ChordPlayer() {
         setShowAnswer(false);
     };
 
+    // 答案内容组件
+    const AnswerContent = () => (
+        <div className="w-full h-full flex flex-col justify-center items-center rounded-lg">
+            <div className="p-8  max-w-md w-full">
+                <p className="text-xl text-center font-semibold mb-2">{getChordFullName(currentChord)}</p>
+                <p className="text-lg text-center">{currentChord.getNotes().join(' ')}</p>
+            </div>
+        </div>
+    );
+
     return (
-        <div className="flex flex-col items-center gap-4">
-            <button
-                onMouseDown={startSound}
-                onMouseUp={stopSound}
-                onMouseLeave={stopSound}
-                onTouchStart={startSound}
-                onTouchEnd={stopSound}
-                onTouchCancel={stopSound}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 touch-none select-none"
-            >
-                Press and Hold
-            </button>
-
-            <button
-                onClick={toggleAnswer}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-                显示答案
-            </button>
-
-            <button
-                onClick={changeChord}
-                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
-            >
-                换个和弦
-            </button>
-
-            <div className="h-16 flex items-center justify-center">
-                {showAnswer && (
-                    <div className="p-4 bg-gray-100 rounded">
-                        <p className="text-center font-semibold">{getChordFullName(currentChord)}</p>
-                        <p className="text-center mt-1">{currentChord.getNotes().join(' ')}</p>
+        <div className="flex flex-col h-screen">
+            {/* 上方 3/4 高度，答案区域 */}
+            <div className="h-[75vh] p-4">
+                {showAnswer ? (
+                    <AnswerContent />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <button
+                            onClick={toggleAnswer}
+                            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium"
+                        >
+                            显示答案
+                        </button>
                     </div>
                 )}
+            </div>
+            
+            {/* 下方 1/4 高度，操作区域 */}
+            <div className="h-[25vh] flex items-center justify-center p-4">
+                <div className="flex justify-center gap-4">
+                    <button
+                        onMouseDown={startSound}
+                        onMouseUp={stopSound}
+                        onMouseLeave={stopSound}
+                        onTouchStart={startSound}
+                        onTouchEnd={stopSound}
+                        onTouchCancel={stopSound}
+                        className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 touch-none select-none font-medium"
+                    >
+                        按住播放
+                    </button>
+
+                    <button
+                        onClick={changeChord}
+                        className="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 font-medium"
+                    >
+                        换个和弦
+                    </button>
+                </div>
             </div>
         </div>
     );

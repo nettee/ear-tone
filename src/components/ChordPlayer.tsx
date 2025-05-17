@@ -72,9 +72,9 @@ export function ChordPlayer() {
     };
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col w-full h-full">
             {/* 上方 3/4 高度，答案区域 */}
-            <div className="h-[75vh] p-4">
+            <div className="w-full h-[75%] p-4">
                 {showAnswer ? (
                     <AnswerContent />
                 ) : (
@@ -90,8 +90,8 @@ export function ChordPlayer() {
             </div>
             
             {/* 下方 1/4 高度，操作区域 */}
-            <div className="h-[25vh] flex items-center justify-center p-4">
-                <div className="flex justify-center gap-4">
+            <div className="w-full h-[25%] flex items-center justify-center p-4">
+                <div className="flex justify-center gap-10">
                     <button
                         onMouseDown={startSound}
                         onMouseUp={stopSound}
@@ -99,14 +99,14 @@ export function ChordPlayer() {
                         onTouchStart={startSound}
                         onTouchEnd={stopSound}
                         onTouchCancel={stopSound}
-                        className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 touch-none select-none font-medium"
+                        className="px-6 py-3 bg-blue-500 text-white rounded-lg touch-none select-none font-medium"
                     >
                         按住播放
                     </button>
 
                     <button
                         onClick={changeChord}
-                        className="px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 font-medium"
+                        className="px-6 py-3 bg-purple-500 text-white rounded-lg touch-none select-none font-medium"
                     >
                         换个和弦
                     </button>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Chord, createDefaultChord, createRandomChord, ChordQuality, ChordInversion } from "@/lib/chord";
 import { playChord, stopChord } from "@/lib/sound";
+import { PianoKeyboard } from "./PianoKeyboard";
 
 // 中文和弦品质名称
 const QUALITY_NAMES_ZH: Record<ChordQuality, string> = {
@@ -52,14 +53,23 @@ export function ChordPlayer() {
     };
 
     // 答案内容组件
-    const AnswerContent = () => (
-        <div className="w-full h-full flex flex-col justify-center items-center rounded-lg">
-            <div className="p-8  max-w-md w-full">
-                <p className="text-xl text-center font-semibold mb-2">{getChordFullName(currentChord)}</p>
-                <p className="text-lg text-center">{currentChord.getNotes().join(' ')}</p>
+    const AnswerContent = () => {
+        const chordNotes = currentChord.getNotes();
+        
+        return (
+            <div className="w-full h-full flex flex-col justify-center items-center rounded-lg">
+                <div className="max-w-md w-full">
+                    <p className="text-xl text-center font-semibold mb-2">{getChordFullName(currentChord)}</p>
+                    <p className="text-lg text-center mb-6">{chordNotes.join(' ')}</p>
+                    
+                    {/* 钢琴键盘 */}
+                    <div className="mb-6">
+                        <PianoKeyboard chordNotes={chordNotes} height={120} />
+                    </div>
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <div className="flex flex-col h-screen">

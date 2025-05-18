@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div className="flex flex-col h-screen">
             <header className="flex flex-col">
-                <div className="mx-6 my-3">
+                <div className="mx-5 my-3">
                     <div className="flex items-center gap-2">
                         <Ear className="w-6 h-6" />
                         <h1 className="text-2xl font-bold">和弦分层练习</h1>

@@ -84,7 +84,7 @@ export function ChordPlayer() {
     return (
         <div className="flex flex-col w-full h-full">
             {/* 上方 3/4 高度，答案区域 */}
-            <div className="w-full h-[75%] p-4">
+            <div className="w-full h-3/4 p-2">
                 {showAnswer ? (
                     <AnswerContent />
                 ) : (
@@ -100,7 +100,7 @@ export function ChordPlayer() {
             </div>
             
             {/* 下方 1/4 高度，操作区域 */}
-            <div className="w-full h-[25%] flex items-center justify-center p-4">
+            <div className="w-full h-1/4 flex items-center justify-center p-2">
                 <div className="flex justify-center gap-10">
                     <button
                         onMouseDown={startSound}

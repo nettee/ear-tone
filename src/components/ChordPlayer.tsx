@@ -5,16 +5,6 @@ import { Chord, createDefaultChord, createRandomChord, ChordQuality, ChordInvers
 import { playChord, stopChord } from "@/lib/sound";
 import { PianoKeyboard } from "./PianoKeyboard";
 
-// 中文和弦品质名称
-const QUALITY_NAMES_ZH: Record<ChordQuality, string> = {
-    major: '大三',
-    minor: '小三',
-    diminished: '减三',
-    augmented: '增三',
-    sus2: 'sus2',
-    sus4: 'sus4',
-};
-
 // 和弦简写符号
 const QUALITY_SYMBOLS: Record<ChordQuality, string> = {
     major: '',    // 大三和弦不需要额外符号

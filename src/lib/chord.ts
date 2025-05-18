@@ -159,9 +159,8 @@ export function createRandomChord(
     qualityOptions: ChordQuality[] = ['major', 'minor'],
     inversionOptions: ChordInversion[] = [0, 1, 2]
 ): Chord {
-    // 可用的根音
-    const roots = Object.keys(NOTE_TO_MIDI)
-        .filter(note => !note.includes("b")); // 使用升号表示法，避免重复
+    // 可用的根音（使用无重复的12个半音）
+    const roots = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
     const randomRoot = roots[Math.floor(Math.random() * roots.length)];
     const randomQuality = qualityOptions[Math.floor(Math.random() * qualityOptions.length)];

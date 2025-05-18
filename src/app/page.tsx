@@ -3,7 +3,7 @@ import { Ear } from "lucide-react";
 
 export default function Home() {
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen select-none">
             <header className="flex flex-col">
                 <div className="mx-5 my-3">
                     <div className="flex items-center gap-2">

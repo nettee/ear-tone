@@ -15,6 +15,16 @@ const QUALITY_NAMES_ZH: Record<ChordQuality, string> = {
     sus4: 'sus4',
 };
 
+// 和弦简写符号
+const QUALITY_SYMBOLS: Record<ChordQuality, string> = {
+    major: '',    // 大三和弦不需要额外符号
+    minor: 'm',
+    diminished: 'dim',
+    augmented: 'aug',
+    sus2: 'sus2',
+    sus4: 'sus4',
+};
+
 // 中文转位名称
 const INVERSION_NAMES_ZH: Record<ChordInversion, string> = {
     0: '原位',
@@ -24,11 +34,11 @@ const INVERSION_NAMES_ZH: Record<ChordInversion, string> = {
 
 // 获取和弦全名
 function getChordFullName(chord: Chord): string {
-    const root = chord.getRoot();
+    const root = chord.getRootName();
     const quality = chord.getQuality();
     const inversion = chord.getInversion();
     
-    return `${root}${QUALITY_NAMES_ZH[quality]}和弦 - ${INVERSION_NAMES_ZH[inversion]}`;
+    return `${root}${QUALITY_SYMBOLS[quality]} 和弦 - ${INVERSION_NAMES_ZH[inversion]}`;
 }
 
 export function ChordPlayer() {

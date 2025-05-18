@@ -81,6 +81,11 @@ export class Chord {
         return this.rootNote;
     }
 
+    // 获取不包含八度信息的根音名称
+    getRootName(): string {
+        return this.rootNote.replace(/\d+$/, '');
+    }
+
     // 获取和弦类型
     getQuality(): ChordQuality {
         return this.quality;

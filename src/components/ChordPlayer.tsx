@@ -81,7 +81,7 @@ export function ChordPlayer() {
                     <div className="w-full h-full flex items-center justify-center">
                         <button
                             onClick={toggleAnswer}
-                            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-medium"
+                            className="px-6 py-3 bg-green-500 text-white rounded-lg touch-none select-none font-medium"
                         >
                             显示答案
                         </button>

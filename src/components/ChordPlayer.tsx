@@ -56,7 +56,7 @@ export function ChordPlayer() {
     };
 
     const stopSound = () => {
-        stopChord(currentChord);
+        stopChord();
     };
 
     const toggleAnswer = () => {

@@ -7,7 +7,6 @@ let isLoaded = false;
 let playbackTimer: NodeJS.Timeout | null = null;
 let autoReleaseTimer: NodeJS.Timeout | null = null;
 let isPlaying = false;
-let currentChord: Chord | null = null;
 
 /**
  * Initialize and get the synth instance
@@ -78,7 +77,7 @@ function playChordIteration(chord: Chord): void {
  */
 export function playChord(chord: Chord): void {
     // Create synth if it doesn't exist
-    const synthInstance = getSynth();
+    getSynth();
 
     // Start the audio context (needed for browsers)
     Tone.start();
@@ -90,11 +89,10 @@ export function playChord(chord: Chord): void {
     }
 
     // Stop any current playback
-    stopChord(chord);
+    stopChord();
 
     // Set playing state
     isPlaying = true;
-    currentChord = chord;
 
     // Start the looping playback
     playChordIteration(chord);
@@ -103,10 +101,9 @@ export function playChord(chord: Chord): void {
 /**
  * Stop playing a chord
  */
-export function stopChord(chord: Chord): void {
+export function stopChord(): void {
     // Set playing state to false to stop the loop
     isPlaying = false;
-    currentChord = null;
 
     // Clear all timers
     if (playbackTimer) {

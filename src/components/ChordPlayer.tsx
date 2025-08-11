@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Chord, createDefaultChord, createRandomChord, ChordQuality, ChordInversion } from "@/lib/chord";
-import { playChord, stopChord } from "@/lib/sound";
+import { playChord, stopChord, preloadSamples, isSamplesLoaded } from "@/lib/sound";
 import { PianoKeyboard } from "./PianoKeyboard";
 
 // 和弦简写符号
@@ -34,6 +34,22 @@ function getChordFullName(chord: Chord): string {
 export function ChordPlayer() {
     const [showAnswer, setShowAnswer] = useState(false);
     const [currentChord, setCurrentChord] = useState<Chord>(createDefaultChord());
+    const [samplesLoaded, setSamplesLoaded] = useState(false);
+
+    useEffect(() => {
+        // Preload audio samples when the component mounts
+        preloadSamples();
+        
+        // Check if samples are loaded every 500ms
+        const checkInterval = setInterval(() => {
+            if (isSamplesLoaded()) {
+                setSamplesLoaded(true);
+                clearInterval(checkInterval);
+            }
+        }, 500);
+
+        return () => clearInterval(checkInterval);
+    }, []);
 
     const startSound = () => {
         playChord(currentChord);
@@ -99,9 +115,14 @@ export function ChordPlayer() {
                         onTouchStart={startSound}
                         onTouchEnd={stopSound}
                         onTouchCancel={stopSound}
-                        className="px-6 py-3 bg-blue-500 text-white rounded-lg touch-none select-none font-medium"
+                        disabled={!samplesLoaded}
+                        className={`px-6 py-3 text-white rounded-lg touch-none select-none font-medium ${
+                            samplesLoaded 
+                                ? 'bg-blue-500 hover:bg-blue-600' 
+                                : 'bg-gray-400 cursor-not-allowed'
+                        }`}
                     >
-                        按住播放
+                        {samplesLoaded ? '按住播放' : '加载中...'}
                     </button>
 
                     <button
